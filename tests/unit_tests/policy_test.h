@@ -1,5 +1,5 @@
 /**
- * @file        main.cpp
+ * @file        endpoint_test.h
  *
  * @author      Tobias Anker <tobias.anker@kitsunemimi.moe>
  *
@@ -20,7 +20,30 @@
  *      limitations under the License.
  */
 
-int main()
+#ifndef POLICY_TEST_H
+#define POLICY_TEST_H
+
+#include <libKitsunemimiCommon/test_helper/compare_test_helper.h>
+
+namespace Kitsunemimi
 {
-    return 0;
+namespace Hanami
+{
+
+class Endpoint_Test
+        : public Kitsunemimi::CompareTestHelper
+{
+public:
+    Endpoint_Test();
+
+private:
+    void parse_test();
+    void checkUserAgainstEndpoint();
+
+    const std::string getTestString();
+};
+
 }
+}
+
+#endif // POLICY_TEST_H
