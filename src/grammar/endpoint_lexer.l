@@ -45,9 +45,7 @@ Kitsunemimi::Hanami::location endpointloc;
 
 
 %option noyywrap nounput batch debug yylineno prefix="endpoint"
-
-id    [a-zA-Z_0-9]*
-path  [a-zA-Z_0-9\/-]*
+path  [a-zA-Z_0-9\/\-_]*
 long  -?([0-9]+)
 blank [ \t]
 
@@ -73,7 +71,6 @@ blank [ \t]
 "blossom" return Kitsunemimi::Hanami::EndpointParser::make_BLOSSOM (endpointloc);
 "tree"    return Kitsunemimi::Hanami::EndpointParser::make_TREE (endpointloc);
 
-{id}      return Kitsunemimi::Hanami::EndpointParser::make_IDENTIFIER(yytext, endpointloc);
 {path}    return Kitsunemimi::Hanami::EndpointParser::make_PATH(yytext, endpointloc);
 
 .          driver.error(endpointloc, "invalid character");

@@ -21,8 +21,6 @@
  */
 
 #include <libKitsunemimiHanamiEndpoints/endpoint.h>
-
-#include <libKitsunemimiCommon/common_items/data_items.h>
 #include <endpoint_parsing/endpoint_parser_interface.h>
 
 namespace Kitsunemimi
@@ -50,35 +48,41 @@ Endpoint::~Endpoint() {}
  */
 bool
 Endpoint::parse(const std::string &input,
-              std::string &errorMessage)
+                std::string &errorMessage)
 {
-    EndpointParserInterface* parser = EndpointParserInterface::getInstance();
-
-    // parse ini-template into a json-tree
-    if(input.size() > 0) {
-        parser->parse(&m_endpointRules, input, errorMessage);
-    } else {
+    if(input.size() == 0) {
         return false;
     }
 
-    return true;
+    EndpointParserInterface* parser = EndpointParserInterface::getInstance();
+    return parser->parse(&m_endpointRules, input, errorMessage);
 }
-
 /**
- * @brief check if request is allowed by endpoint
- *
- * @param component name of the requested component
- * @param endpoint requested endpoint of the component
- * @param group group which has to be checked
- *
- * @return true, if check was successfully, else false
+ * @brief Endpoint::checkUserAgainstEndpoint
+ * @param id
+ * @param type
+ * @return
  */
 bool
-Endpoint::checkUserAgainstEndpoint(const std::string &component,
-                                   const std::string &endpoint,
-                                   const std::string &group)
+Endpoint::mapEndpoint(EndpointEntry &result,
+                      const std::string &id,
+                      const HttpType type)
 {
-    DataItem* item = nullptr;
+    std::map<std::string, std::map<uint8_t, EndpointEntry>>::const_iterator id_it;
+    id_it = m_endpointRules.find(id);
+
+    if(id_it != m_endpointRules.end())
+    {
+        std::map<uint8_t, EndpointEntry>::const_iterator type_it;
+        type_it = id_it->second.find(type);
+
+        if(type_it != id_it->second.end())
+        {
+            result.type = type_it->second.type;
+            result.path = type_it->second.path;
+            return true;
+        }
+    }
 
     return false;
 }

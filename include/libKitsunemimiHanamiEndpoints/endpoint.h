@@ -1,5 +1,5 @@
-/**
- * @file        policy.h
+﻿/**
+ * @file        endpoint.h
  *
  * @author      Tobias Anker <tobias.anker@kitsunemimi.moe>
  *
@@ -29,7 +29,6 @@
 
 namespace Kitsunemimi
 {
-class DataMap;
 namespace Hanami
 {
 class Endpoint_Test;
@@ -48,9 +47,9 @@ public:
 
     bool parse(const std::string &input, std::string &errorMessage);
 
-    bool checkUserAgainstEndpoint(const std::string &component,
-                                  const std::string &endpoint,
-                                  const std::string &group);
+    bool mapEndpoint(EndpointEntry &result,
+                     const std::string &id,
+                     const HttpType type);
 
 private:
     std::map<std::string, std::map<uint8_t, EndpointEntry>> m_endpointRules;

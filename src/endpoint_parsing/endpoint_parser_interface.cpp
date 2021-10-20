@@ -24,13 +24,7 @@
 #include <endpoint_parser.h>
 
 #include <libKitsunemimiCommon/common_methods/string_methods.h>
-#include <libKitsunemimiCommon/common_items/data_items.h>
 #include <libKitsunemimiHanamiEndpoints/endpoint.h>
-
-using Kitsunemimi::DataItem;
-using Kitsunemimi::DataArray;
-using Kitsunemimi::DataValue;
-using Kitsunemimi::DataMap;
 
 # define YY_DECL \
     Kitsunemimi::Hanami::EndpointParser::symbol_type endpointlex (Kitsunemimi::Hanami::EndpointParserInterface& driver)

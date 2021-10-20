@@ -1,5 +1,5 @@
 /**
- * @file        policy_parser_interface.h
+ * @file        endpoint_parser_interface.h
  *
  * @author      Tobias Anker <tobias.anker@kitsunemimi.moe>
  *

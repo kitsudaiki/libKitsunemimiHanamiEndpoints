@@ -82,7 +82,6 @@ YY_DECL;
     TREE  "tree"
 ;
 
-%token <std::string> IDENTIFIER "identifier"
 %token <std::string> PATH "path"
 
 %type  <ObjectType> object_type
