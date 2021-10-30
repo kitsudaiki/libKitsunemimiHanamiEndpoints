@@ -65,6 +65,8 @@ class EndpointParserInterface;
 # define YY_DECL \
     Kitsunemimi::Hanami::EndpointParser::symbol_type endpointlex (Kitsunemimi::Hanami::EndpointParserInterface& driver)
 YY_DECL;
+
+std::map<uint8_t, Kitsunemimi::Hanami::EndpointEntry> tempEndpoint;
 }
 
 // Token
@@ -84,7 +86,7 @@ YY_DECL;
 
 %token <std::string> PATH "path"
 
-%type  <ObjectType> object_type
+%type  <SakuraObjectType> object_type
 %type  <HttpType> request_type
 
 %%
@@ -99,13 +101,13 @@ startpoint:
 endpoint_content:
     endpoint_content "path" endpoint_object_content
     {
-        driver.m_result->insert(std::make_pair($2, driver.tempEndpoint));
+        driver.m_result->insert(std::make_pair($2, tempEndpoint));
     }
 |
     "path" endpoint_object_content
     {
         driver.m_result->clear();
-        driver.m_result->insert(std::make_pair($1, driver.tempEndpoint));
+        driver.m_result->insert(std::make_pair($1, tempEndpoint));
     }
 
 endpoint_object_content:
@@ -114,27 +116,27 @@ endpoint_object_content:
         EndpointEntry entry;
         entry.type = $5;
         entry.path = $7;
-        driver.tempEndpoint.insert(std::make_pair((uint8_t)$3, entry));
+        tempEndpoint.insert(std::make_pair((uint8_t)$3, entry));
     }
 |
     "-" request_type "->" object_type ":" "path"
     {
-        driver.tempEndpoint.clear();
+        tempEndpoint.clear();
         EndpointEntry entry;
         entry.type = $4;
         entry.path = $6;
-        driver.tempEndpoint.insert(std::make_pair((uint8_t)$2, entry));
+        tempEndpoint.insert(std::make_pair((uint8_t)$2, entry));
     }
 
 object_type:
     "blossom"
     {
-        $$ = ObjectType::BLOSSOM_TYPE;
+        $$ = SakuraObjectType::BLOSSOM_TYPE;
     }
 |
     "tree"
     {
-        $$ = ObjectType::TREE_TYPE;
+        $$ = SakuraObjectType::TREE_TYPE;
     }
 
 request_type:

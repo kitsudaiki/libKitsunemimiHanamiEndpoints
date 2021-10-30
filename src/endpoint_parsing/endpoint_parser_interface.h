@@ -51,7 +51,6 @@ public:
     const std::string removeQuotes(const std::string &input);
 
     std::map<std::string, std::map<uint8_t, EndpointEntry>>* m_result = nullptr;
-    std::map<uint8_t, EndpointEntry> tempEndpoint;
 
     // Error handling.
     void error(const location &location,

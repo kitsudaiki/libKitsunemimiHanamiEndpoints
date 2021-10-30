@@ -69,7 +69,7 @@ Endpoint_Test::mapEndpoint_test()
 
     // get existing
     TEST_EQUAL(endpoint.mapEndpoint(result, "path-test_2/test", HttpType::POST_TYPE), true);
-    TEST_EQUAL(result.type, ObjectType::TREE_TYPE);
+    TEST_EQUAL(result.type, SakuraObjectType::TREE_TYPE);
     TEST_EQUAL(result.path, "test_list2_blossom");
 
     // get non-existing

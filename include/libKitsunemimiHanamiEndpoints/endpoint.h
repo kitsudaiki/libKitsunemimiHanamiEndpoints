@@ -35,7 +35,7 @@ class Endpoint_Test;
 
 struct EndpointEntry
 {
-    ObjectType type = BLOSSOM_TYPE;
+    SakuraObjectType type = BLOSSOM_TYPE;
     std::string path = "";
 };
 
