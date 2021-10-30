@@ -5,7 +5,7 @@ QT -= qt core gui
 CONFIG   -= app_bundle
 CONFIG += c++17 console
 
-LIBS += -L../../src -lKitsunemimiHanamiPolicies
+LIBS += -L../../src -lKitsunemimiHanamiEndpoints
 
 LIBS += -L../../../libKitsunemimiCommon/src -lKitsunemimiCommon
 LIBS += -L../../../libKitsunemimiCommon/src/debug -lKitsunemimiCommon

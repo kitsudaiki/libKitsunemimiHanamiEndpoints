@@ -1,6 +1,6 @@
 QT -= qt core gui
 
-TARGET = KitsunemimiHanamiPolicies
+TARGET = KitsunemimiHanamiEndpoints
 TEMPLATE = lib
 CONFIG += c++17
 VERSION = 0.1.0
