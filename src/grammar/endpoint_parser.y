@@ -66,7 +66,7 @@ class EndpointParserInterface;
     Kitsunemimi::Hanami::EndpointParser::symbol_type endpointlex (Kitsunemimi::Hanami::EndpointParserInterface& driver)
 YY_DECL;
 
-std::map<uint8_t, Kitsunemimi::Hanami::EndpointEntry> tempEndpoint;
+std::map<Kitsunemimi::Hanami::HttpRequestType, Kitsunemimi::Hanami::EndpointEntry> tempEndpoint;
 }
 
 // Token
@@ -87,7 +87,7 @@ std::map<uint8_t, Kitsunemimi::Hanami::EndpointEntry> tempEndpoint;
 %token <std::string> PATH "path"
 
 %type  <SakuraObjectType> object_type
-%type  <HttpType> request_type
+%type  <Kitsunemimi::Hanami::HttpRequestType> request_type
 
 %%
 %start startpoint;
@@ -116,7 +116,7 @@ endpoint_object_content:
         EndpointEntry entry;
         entry.type = $5;
         entry.path = $7;
-        tempEndpoint.insert(std::make_pair((uint8_t)$3, entry));
+        tempEndpoint.insert(std::make_pair($3, entry));
     }
 |
     "-" request_type "->" object_type ":" "path"
@@ -125,7 +125,7 @@ endpoint_object_content:
         EndpointEntry entry;
         entry.type = $4;
         entry.path = $6;
-        tempEndpoint.insert(std::make_pair((uint8_t)$2, entry));
+        tempEndpoint.insert(std::make_pair($2, entry));
     }
 
 object_type:
@@ -142,22 +142,22 @@ object_type:
 request_type:
     "GET"
     {
-        $$ = HttpType::GET_TYPE;
+        $$ = Kitsunemimi::Hanami::HttpRequestType::GET_TYPE;
     }
 |
     "POST"
     {
-        $$ = HttpType::POST_TYPE;
+        $$ = Kitsunemimi::Hanami::HttpRequestType::POST_TYPE;
     }
 |
     "PUT"
     {
-        $$ = HttpType::PUT_TYPE;
+        $$ = Kitsunemimi::Hanami::HttpRequestType::PUT_TYPE;
     }
 |
     "DELETE"
     {
-        $$ = HttpType::DELETE_TYPE;
+        $$ = Kitsunemimi::Hanami::HttpRequestType::DELETE_TYPE;
     }
 
 %%

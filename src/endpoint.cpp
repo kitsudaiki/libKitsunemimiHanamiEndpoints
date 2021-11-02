@@ -28,6 +28,8 @@ namespace Kitsunemimi
 namespace Hanami
 {
 
+Endpoint* Endpoint::m_endpoints = nullptr;
+
 /**
  * @brief Endpoint::Endpoint
  */
@@ -37,6 +39,20 @@ Endpoint::Endpoint() {}
  * @brief Endpoint::~Endpoint
  */
 Endpoint::~Endpoint() {}
+
+/**
+ * @brief get instance, which must be already initialized
+ *
+ * @return instance-object
+ */
+Endpoint*
+Endpoint::getInstance()
+{
+    if(m_endpoints == nullptr) {
+        m_endpoints = new Endpoint();
+    }
+    return m_endpoints;
+}
 
 /**
  * @brief parse endpoint-file content
@@ -66,14 +82,14 @@ Endpoint::parse(const std::string &input,
 bool
 Endpoint::mapEndpoint(EndpointEntry &result,
                       const std::string &id,
-                      const HttpType type)
+                      const HttpRequestType type)
 {
-    std::map<std::string, std::map<uint8_t, EndpointEntry>>::const_iterator id_it;
+    std::map<std::string, std::map<HttpRequestType, EndpointEntry>>::const_iterator id_it;
     id_it = m_endpointRules.find(id);
 
     if(id_it != m_endpointRules.end())
     {
-        std::map<uint8_t, EndpointEntry>::const_iterator type_it;
+        std::map<HttpRequestType, EndpointEntry>::const_iterator type_it;
         type_it = id_it->second.find(type);
 
         if(type_it != id_it->second.end())

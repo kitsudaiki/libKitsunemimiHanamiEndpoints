@@ -68,13 +68,13 @@ Endpoint_Test::mapEndpoint_test()
     endpoint.parse(getTestInput(), errorMessage);
 
     // get existing
-    TEST_EQUAL(endpoint.mapEndpoint(result, "path-test_2/test", HttpType::POST_TYPE), true);
+    TEST_EQUAL(endpoint.mapEndpoint(result, "path-test_2/test", HttpRequestType::POST_TYPE), true);
     TEST_EQUAL(result.type, SakuraObjectType::TREE_TYPE);
     TEST_EQUAL(result.path, "test_list2_blossom");
 
     // get non-existing
-    TEST_EQUAL(endpoint.mapEndpoint(result, "path-test_2/test", HttpType::DELETE_TYPE), false);
-    TEST_EQUAL(endpoint.mapEndpoint(result, "path-test_2/fail", HttpType::POST_TYPE), false);
+    TEST_EQUAL(endpoint.mapEndpoint(result, "path-test_2/test", HttpRequestType::DELETE_TYPE), false);
+    TEST_EQUAL(endpoint.mapEndpoint(result, "path-test_2/fail", HttpRequestType::POST_TYPE), false);
 }
 
 /**

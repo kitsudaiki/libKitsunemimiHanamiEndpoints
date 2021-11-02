@@ -27,6 +27,7 @@
 #include <mutex>
 #include <stdint.h>
 #include <map>
+#include <libKitsunemimiHanamiCommon/enums.h>
 
 namespace Kitsunemimi
 {
@@ -45,12 +46,12 @@ public:
     // connection the the scanner and parser
     void scan_begin(const std::string &inputString);
     void scan_end();
-    bool parse(std::map<std::string, std::map<uint8_t, EndpointEntry>>* result,
+    bool parse(std::map<std::string, std::map<HttpRequestType, EndpointEntry> > *result,
                const std::string &inputString,
                std::string &errorMessage);
     const std::string removeQuotes(const std::string &input);
 
-    std::map<std::string, std::map<uint8_t, EndpointEntry>>* m_result = nullptr;
+    std::map<std::string, std::map<HttpRequestType, EndpointEntry>>* m_result = nullptr;
 
     // Error handling.
     void error(const location &location,

@@ -80,7 +80,7 @@ EndpointParserInterface::~EndpointParserInterface() {}
  * @return resulting object
  */
 bool
-EndpointParserInterface::parse(std::map<std::string, std::map<uint8_t, EndpointEntry>>* result,
+EndpointParserInterface::parse(std::map<std::string, std::map<HttpRequestType, EndpointEntry>>* result,
                                const std::string &inputString,
                                std::string &errorMessage)
 {

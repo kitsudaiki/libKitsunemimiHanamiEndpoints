@@ -42,17 +42,22 @@ struct EndpointEntry
 class Endpoint
 {
 public:
-    Endpoint();
+    static Endpoint* getInstance();
+
     ~Endpoint();
 
     bool parse(const std::string &input, std::string &errorMessage);
 
     bool mapEndpoint(EndpointEntry &result,
                      const std::string &id,
-                     const HttpType type);
+                     const HttpRequestType type);
 
 private:
-    std::map<std::string, std::map<uint8_t, EndpointEntry>> m_endpointRules;
+    Endpoint();
+
+    std::map<std::string, std::map<HttpRequestType, EndpointEntry>> m_endpointRules;
+
+    static Endpoint* m_endpoints;
 
     friend Endpoint_Test;
 };
