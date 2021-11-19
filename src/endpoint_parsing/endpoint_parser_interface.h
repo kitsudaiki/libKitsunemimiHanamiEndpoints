@@ -28,6 +28,7 @@
 #include <stdint.h>
 #include <map>
 #include <libKitsunemimiHanamiCommon/enums.h>
+#include <libKitsunemimiCommon/logger.h>
 
 namespace Kitsunemimi
 {
@@ -48,7 +49,7 @@ public:
     void scan_end();
     bool parse(std::map<std::string, std::map<HttpRequestType, EndpointEntry> > *result,
                const std::string &inputString,
-               std::string &errorMessage);
+               ErrorContainer &error);
     const std::string removeQuotes(const std::string &input);
 
     std::map<std::string, std::map<HttpRequestType, EndpointEntry>>* m_result = nullptr;

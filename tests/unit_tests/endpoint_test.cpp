@@ -43,17 +43,17 @@ void
 Endpoint_Test::parse_test()
 {
     Endpoint endpoint;
-    std::string errorMessage = "";
+    ErrorContainer error;
     std::string testString = getTestInput();
 
     // check valid string
-    TEST_EQUAL(endpoint.parse(testString, errorMessage), true);
-    TEST_EQUAL(endpoint.parse(testString, errorMessage), true);
+    TEST_EQUAL(endpoint.parse(testString, error), true);
+    TEST_EQUAL(endpoint.parse(testString, error), true);
 
     // check invalid string
     // replace first "-" by "+"
     testString[6] = '+';
-    TEST_EQUAL(endpoint.parse(testString, errorMessage), false);
+    TEST_EQUAL(endpoint.parse(testString, error), false);
 }
 
 /**
@@ -64,8 +64,8 @@ Endpoint_Test::mapEndpoint_test()
 {
     EndpointEntry result;
     Endpoint endpoint;
-    std::string errorMessage = "";
-    endpoint.parse(getTestInput(), errorMessage);
+    ErrorContainer error;
+    endpoint.parse(getTestInput(), error);
 
     // get existing
     TEST_EQUAL(endpoint.mapEndpoint(result, "path-test_2/test", HttpRequestType::POST_TYPE), true);

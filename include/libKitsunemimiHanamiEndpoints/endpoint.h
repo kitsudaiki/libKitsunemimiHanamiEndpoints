@@ -26,6 +26,7 @@
 #include <string>
 #include <map>
 #include <libKitsunemimiHanamiCommon/enums.h>
+#include <libKitsunemimiCommon/logger.h>
 
 namespace Kitsunemimi
 {
@@ -46,7 +47,7 @@ public:
 
     ~Endpoint();
 
-    bool parse(const std::string &input, std::string &errorMessage);
+    bool parse(const std::string &input, ErrorContainer &error);
 
     bool mapEndpoint(EndpointEntry &result,
                      const std::string &id,

@@ -58,20 +58,20 @@ Endpoint::getInstance()
  * @brief parse endpoint-file content
  *
  * @param input input-string with endpoint-definition to parse
- * @param errorMessage reference for the output of the error-message
+ * @param error reference for error-output
  *
  * @return true, if parsing was successfull, else false
  */
 bool
 Endpoint::parse(const std::string &input,
-                std::string &errorMessage)
+                ErrorContainer &error)
 {
     if(input.size() == 0) {
         return false;
     }
 
     EndpointParserInterface* parser = EndpointParserInterface::getInstance();
-    return parser->parse(&m_endpointRules, input, errorMessage);
+    return parser->parse(&m_endpointRules, input, error);
 }
 /**
  * @brief Endpoint::checkUserAgainstEndpoint

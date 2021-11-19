@@ -82,11 +82,10 @@ function get_required_private_repo_github () {
 
 echo "###########################################################################################################"
 echo ""
-get_required_kitsune_lib_repo "libKitsunemimiCommon" "v0.22.0" 4 "staticlib"
-echo ""
-echo "###########################################################################################################"
-echo ""
-get_required_private_repo_gitlab "libKitsunemimiHanamiCommon" "master" "2ue6RNxkCDs2A7qp1xtN" 4 "staticlib"
+get_required_kitsune_lib_repo "libKitsunemimiCommon" "v0.23.0" 8 "staticlib"
+get_required_kitsune_lib_repo "libKitsunemimiArgs" "master" 8 "staticlib"
+get_required_kitsune_lib_repo "libKitsunemimiConfig" "master" 8 "staticlib"
+get_required_private_repo_gitlab "libKitsunemimiHanamiCommon" "master" "2ue6RNxkCDs2A7qp1xtN" 8 "staticlib"
 echo ""
 echo "###########################################################################################################"
 
