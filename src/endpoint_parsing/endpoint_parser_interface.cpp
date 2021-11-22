@@ -99,9 +99,11 @@ EndpointParserInterface::parse(std::map<std::string, std::map<HttpRequestType, E
     this->scan_end();
 
     // handle negative result
-    if(res != 0)
+    if(res != 0
+            || m_errorMessage.size() > 0)
     {
         error.addMeesage(m_errorMessage);
+        LOG_ERROR(error);
         return false;
     }
 
@@ -150,6 +152,10 @@ void
 EndpointParserInterface::error(const Kitsunemimi::Hanami::location& location,
                              const std::string& message)
 {
+    if(m_errorMessage.size() > 0) {
+        return;
+    }
+
     // get the broken part of the parsed string
     const uint32_t errorStart = location.begin.column;
     const uint32_t errorLength = location.end.column - location.begin.column;
@@ -158,16 +164,22 @@ EndpointParserInterface::error(const Kitsunemimi::Hanami::location& location,
     std::vector<std::string> splittedContent;
     splitStringByDelimiter(splittedContent, m_inputString, '\n');
 
-    // -1 because the number starts for user-readability at 1 instead of 0
-    const std::string errorStringPart = splittedContent[linenumber - 1].substr(errorStart - 1,
-                                                                               errorLength);
-
     // build error-message
-    m_errorMessage =  "ERROR while parsing endpoint-formated string \n";
+    m_errorMessage =  "ERROR while parsing endpoint-file content \n";
     m_errorMessage += "parser-message: " + message + " \n";
     m_errorMessage += "line-number: " + std::to_string(linenumber) + " \n";
-    m_errorMessage += "position in line: " + std::to_string(location.begin.column) + " \n";
-    m_errorMessage += "broken part in string: \"" + errorStringPart + "\" \n";
+
+    if(splittedContent[linenumber - 1].size() > errorStart - 1 + errorLength)
+    {
+        m_errorMessage.append("position in line: " +  std::to_string(location.begin.column) + "\n");
+        m_errorMessage.append("broken part in string: \""
+                              + splittedContent[linenumber - 1].substr(errorStart - 1, errorLength)
+                              + "\"");
+    }
+    else
+    {
+        m_errorMessage.append("position in line: UNKNOWN POSITION (maybe a string was not closed)");
+    }
 }
 
 }  // namespace Endpoint
