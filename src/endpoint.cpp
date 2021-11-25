@@ -95,7 +95,8 @@ Endpoint::mapEndpoint(EndpointEntry &result,
         if(type_it != id_it->second.end())
         {
             result.type = type_it->second.type;
-            result.path = type_it->second.path;
+            result.group = type_it->second.group;
+            result.name = type_it->second.name;
             return true;
         }
     }

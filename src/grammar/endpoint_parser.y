@@ -111,12 +111,32 @@ endpoint_content:
     }
 
 endpoint_object_content:
+    endpoint_object_content "-" request_type "->" object_type ":" "path" ":" "path"
+    {
+        EndpointEntry entry;
+        entry.type = $5;
+        entry.group = $7;
+        entry.name = $9;
+        tempEndpoint.insert(std::make_pair($3, entry));
+    }
+|
     endpoint_object_content "-" request_type "->" object_type ":" "path"
     {
         EndpointEntry entry;
         entry.type = $5;
-        entry.path = $7;
+        entry.group = "-";
+        entry.name = $7;
         tempEndpoint.insert(std::make_pair($3, entry));
+    }
+|
+    "-" request_type "->" object_type ":" "path" ":" "path"
+    {
+        tempEndpoint.clear();
+        EndpointEntry entry;
+        entry.type = $4;
+        entry.group = $6;
+        entry.name = $8;
+        tempEndpoint.insert(std::make_pair($2, entry));
     }
 |
     "-" request_type "->" object_type ":" "path"
@@ -124,7 +144,8 @@ endpoint_object_content:
         tempEndpoint.clear();
         EndpointEntry entry;
         entry.type = $4;
-        entry.path = $6;
+        entry.group = "-";
+        entry.name = $6;
         tempEndpoint.insert(std::make_pair($2, entry));
     }
 

@@ -70,7 +70,8 @@ Endpoint_Test::mapEndpoint_test()
     // get existing
     TEST_EQUAL(endpoint.mapEndpoint(result, "path-test_2/test", HttpRequestType::POST_TYPE), true);
     TEST_EQUAL(result.type, SakuraObjectType::TREE_TYPE);
-    TEST_EQUAL(result.path, "test_list2_blossom");
+    TEST_EQUAL(result.group, "group2");
+    TEST_EQUAL(result.name, "test_list2_blossom");
 
     // get non-existing
     TEST_EQUAL(endpoint.mapEndpoint(result, "path-test_2/test", HttpRequestType::DELETE_TYPE), false);
@@ -85,12 +86,12 @@ std::string
 Endpoint_Test::getTestInput()
 {
     std::string input = "path/test2\n"
-                        "- GET  -> blossom : test_single1_blossom\n"
-                        "- POST -> tree : test_single2_blossom\n"
+                        "- GET  -> blossom : group1 : test_single1_blossom\n"
+                        "- POST -> tree : group1 : test_single2_blossom\n"
                         "\n"
                         "path-test_2/test\n"
                         "- GET  -> blossom : test_list1_blossom\n"
-                        "- POST -> tree : test_list2_blossom\n"
+                        "- POST -> tree : group2 : test_list2_blossom\n"
                         "\n";
     return input;
 }
