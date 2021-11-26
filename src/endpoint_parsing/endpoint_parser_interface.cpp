@@ -182,5 +182,5 @@ EndpointParserInterface::error(const Kitsunemimi::Hanami::location& location,
     }
 }
 
-}  // namespace Endpoint
+}  // namespace Hanami
 }  // namespace Kitsunemimi

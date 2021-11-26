@@ -64,7 +64,7 @@ private:
     friend Endpoint_Test;
 };
 
-}
-}
+}  // namespace Hanami
+}  // namespace Kitsunemimi
 
 #endif // ENDPOINT_H

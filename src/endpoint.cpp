@@ -73,11 +73,15 @@ Endpoint::parse(const std::string &input,
     EndpointParserInterface* parser = EndpointParserInterface::getInstance();
     return parser->parse(&m_endpointRules, input, error);
 }
+
 /**
- * @brief Endpoint::checkUserAgainstEndpoint
- * @param id
- * @param type
- * @return
+ * @brief map the endpoint to the real target
+ *
+ * @param result reference to the result to identify the target
+ * @param id request-id
+ * @param type requested http-request-type
+ *
+ * @return false, if mapping failes, else true
  */
 bool
 Endpoint::mapEndpoint(EndpointEntry &result,
@@ -104,6 +108,5 @@ Endpoint::mapEndpoint(EndpointEntry &result,
     return false;
 }
 
-
-}
-}
+}  // namespace Hanami
+}  // namespace Kitsunemimi

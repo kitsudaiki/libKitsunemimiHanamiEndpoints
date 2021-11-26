@@ -70,7 +70,7 @@ private:
     bool m_traceParsing = false;
 };
 
-}  // namespace Endpoint
+}  // namespace Hanami
 }  // namespace Kitsunemimi
 
 #endif // POLICY_PARSER_INTERFACE_H
