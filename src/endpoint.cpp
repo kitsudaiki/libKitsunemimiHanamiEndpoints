@@ -71,7 +71,7 @@ Endpoint::parse(const std::string &input,
     }
 
     EndpointParserInterface* parser = EndpointParserInterface::getInstance();
-    return parser->parse(&m_endpointRules, input, error);
+    return parser->parse(&endpointRules, input, error);
 }
 
 /**
@@ -89,9 +89,9 @@ Endpoint::mapEndpoint(EndpointEntry &result,
                       const HttpRequestType type)
 {
     std::map<std::string, std::map<HttpRequestType, EndpointEntry>>::const_iterator id_it;
-    id_it = m_endpointRules.find(id);
+    id_it = endpointRules.find(id);
 
-    if(id_it != m_endpointRules.end())
+    if(id_it != endpointRules.end())
     {
         std::map<HttpRequestType, EndpointEntry>::const_iterator type_it;
         type_it = id_it->second.find(type);

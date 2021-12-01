@@ -54,10 +54,10 @@ public:
                      const std::string &id,
                      const HttpRequestType type);
 
+    std::map<std::string, std::map<HttpRequestType, EndpointEntry>> endpointRules;
+
 private:
     Endpoint();
-
-    std::map<std::string, std::map<HttpRequestType, EndpointEntry>> m_endpointRules;
 
     static Endpoint* m_endpoints;
 
