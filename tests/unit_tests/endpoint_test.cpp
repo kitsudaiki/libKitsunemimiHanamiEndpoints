@@ -76,6 +76,19 @@ Endpoint_Test::mapEndpoint_test()
     // get non-existing
     TEST_EQUAL(endpoint.mapEndpoint(result, "path-test_2/test", HttpRequestType::DELETE_TYPE), false);
     TEST_EQUAL(endpoint.mapEndpoint(result, "path-test_2/fail", HttpRequestType::POST_TYPE), false);
+
+    // add new endpoint
+    TEST_EQUAL(endpoint.addEndpoint("path-test_2/test",
+                                    HttpRequestType::DELETE_TYPE,
+                                    SakuraObjectType::TREE_TYPE,
+                                    "asdf",
+                                    "poi"), true);
+    TEST_EQUAL(endpoint.addEndpoint("path-test_2/test",
+                                    HttpRequestType::DELETE_TYPE,
+                                    SakuraObjectType::TREE_TYPE,
+                                    "asdf",
+                                    "poi"), false);
+    TEST_EQUAL(endpoint.mapEndpoint(result, "path-test_2/test", HttpRequestType::DELETE_TYPE), true);
 }
 
 /**

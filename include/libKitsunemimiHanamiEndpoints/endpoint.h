@@ -53,6 +53,11 @@ public:
     bool mapEndpoint(EndpointEntry &result,
                      const std::string &id,
                      const HttpRequestType type);
+    bool addEndpoint(const std::string &id,
+                     const HttpRequestType &httpType,
+                     const SakuraObjectType &sakuraType,
+                     const std::string &group,
+                     const std::string &name);
 
     std::map<std::string, std::map<HttpRequestType, EndpointEntry>> endpointRules;
 

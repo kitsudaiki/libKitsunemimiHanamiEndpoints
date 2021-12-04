@@ -108,5 +108,54 @@ Endpoint::mapEndpoint(EndpointEntry &result,
     return false;
 }
 
+/**
+ * @brief add new custom-endpoint
+ *
+ * @param id
+ * @param httpType
+ * @param sakuraType
+ * @param group
+ * @param name
+ *
+ * @return false, if id together with http-type is already registered, else true
+ */
+bool
+Endpoint::addEndpoint(const std::string &id,
+                      const HttpRequestType &httpType,
+                      const SakuraObjectType &sakuraType,
+                      const std::string &group,
+                      const std::string &name)
+{
+    EndpointEntry newEntry;
+    newEntry.type = sakuraType;
+    newEntry.group = group;
+    newEntry.name = name;
+
+    // search for id
+    std::map<std::string, std::map<HttpRequestType, EndpointEntry>>::iterator id_it;
+    id_it = endpointRules.find(id);
+    if(id_it != endpointRules.end())
+    {
+        // search for http-type
+        std::map<HttpRequestType, EndpointEntry>::iterator type_it;
+        type_it = id_it->second.find(httpType);
+        if(type_it != id_it->second.end()) {
+            return false;
+        }
+
+        // add new
+        id_it->second.emplace(httpType, newEntry);
+    }
+    else
+    {
+        // add new
+        std::map<HttpRequestType, EndpointEntry> typeEntry;
+        typeEntry.emplace(httpType, newEntry);
+        endpointRules.emplace(id, typeEntry);
+    }
+
+    return true;
+}
+
 }  // namespace Hanami
 }  // namespace Kitsunemimi
