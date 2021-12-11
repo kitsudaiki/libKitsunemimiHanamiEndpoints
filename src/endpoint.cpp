@@ -66,10 +66,6 @@ bool
 Endpoint::parse(const std::string &input,
                 ErrorContainer &error)
 {
-    if(input.size() == 0) {
-        return false;
-    }
-
     EndpointParserInterface* parser = EndpointParserInterface::getInstance();
     return parser->parse(&endpointRules, input, error);
 }

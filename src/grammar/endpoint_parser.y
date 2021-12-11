@@ -97,6 +97,10 @@ startpoint:
     endpoint_content
     {
     }
+|
+    %empty
+    {
+    }
 
 endpoint_content:
     endpoint_content "path" endpoint_object_content
