@@ -60,7 +60,7 @@ Endpoint::getInstance()
  * @param input input-string with endpoint-definition to parse
  * @param error reference for error-output
  *
- * @return true, if parsing was successfull, else false
+ * @return true, if parsing was successful, else false
  */
 bool
 Endpoint::parse(const std::string &input,
@@ -105,13 +105,13 @@ Endpoint::mapEndpoint(EndpointEntry &result,
 }
 
 /**
- * @brief add new custom-endpoint
+ * @brief add new custom-endpoint without the parser
  *
- * @param id
- * @param httpType
- * @param sakuraType
- * @param group
- * @param name
+ * @param id identifier for the new entry
+ * @param httpType http-type (get, post, put, delete)
+ * @param sakuraType sakura-type (tree or blossom)
+ * @param group blossom-group
+ * @param name tree- or blossom-id
  *
  * @return false, if id together with http-type is already registered, else true
  */
