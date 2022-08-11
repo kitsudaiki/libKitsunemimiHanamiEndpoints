@@ -23,7 +23,7 @@
 #include <endpoint_parsing/endpoint_parser_interface.h>
 #include <endpoint_parser.h>
 
-#include <libKitsunemimiCommon/common_methods/string_methods.h>
+#include <libKitsunemimiCommon/methods/string_methods.h>
 #include <libKitsunemimiHanamiEndpoints/endpoint.h>
 
 # define YY_DECL \
