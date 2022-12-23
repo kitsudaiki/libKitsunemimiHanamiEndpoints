@@ -1,4 +1,4 @@
-# libKitsunemimiHanamiEndpoints
+# libKitsunemimiHanamiEndpoints (DEPRECATED)
 
 ![Github workfloat status](https://img.shields.io/github/workflow/status/kitsudaiki/libKitsunemimiHanamiEndpoints/build-and-test/develop?label=build%20and%20test&style=flat-square)
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/kitsudaiki/libKitsunemimiHanamiEndpoints?label=version&style=flat-square)
@@ -7,6 +7,8 @@
 ![Platform](https://img.shields.io/badge/platform-Linux--x64-lightgrey?style=flat-square)
 
 ## Description
+
+**IMPORTANT: This library is no longer maintained** 
 
 Handling and checking of custom endpoint-files.
 
